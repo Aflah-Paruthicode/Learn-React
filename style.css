@@ -1,3 +1,56 @@
+    @import url('https://fonts.cdnfonts.com/css/coca-cola-ii');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 #jd {
     color:honeydew
+}
+
+#kidddoo {
+    color: rgb(113, 121, 121);
+}
+
+header {
+        justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: 0 6px;
+    display: flex
+;
+}
+
+header img {
+    height: 70px;
+}
+
+header #user-icon img {
+    width: 100px;
+    height: 100px;
+}
+
+header a {
+        font-family: 'Coca Cola ii';
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    padding: 7px 17px;
+    font-size: 24px;
+    margin-left: 5px;
+    border-radius: 15px;
+}
+
+header input {
+        height: 26px;
+    font-family: 'Coca Cola ii';
+    font-size: 24px;
+    padding: 5px 10px;
+    border-radius: 22px;
+    outline: none;
+    border: 2px solid red;
+    color: #ffffff;
+    background: red;
 }

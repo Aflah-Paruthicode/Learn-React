@@ -1,0 +1,29 @@
+{
+  "name": "reactlearn",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Aflah-Paruthicode/Learn-React#readme",
+  "bugs": {
+    "url": "https://github.com/Aflah-Paruthicode/Learn-React/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aflah-Paruthicode/Learn-React.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "browserlist": "^1.0.1",
+    "parcel": "^2.15.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "browserlist": [
+    "last two 2 versions"
+  ]
+}
