@@ -1,0 +1,1 @@
+export const foodLogo = new URL('../assets/foodLogo.jpg', import.meta.url).href;
