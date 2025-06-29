@@ -1,6 +1,9 @@
 import { foodLogo } from "../utils/constants"
+import { useState } from "react"
 
 const Header = () => {
+    let [buttonName,setButtonName] = useState('Login')
+
     return (
         <div className="header">
             <div className="logo-container">
@@ -14,6 +17,11 @@ const Header = () => {
                     <li>Contact Us</li>
                     <li>Cart</li>
                 </ul>
+                <button onClick={() => {
+                        buttonName == 'Login' ? setButtonName('Logout') : setButtonName('Login');
+                    }}>
+                        {buttonName}
+                        </button>
             </div>
         </div>
     )
