@@ -1,4 +1,5 @@
 const RestuarentCard = ({name, cuisines, areaName, avgRating, deliveryTime, img, price}) => {
+    {console.log(cuisines)}
     return (
         <div className="res-card">
             <div className="res-LogoRoot">
@@ -11,7 +12,7 @@ const RestuarentCard = ({name, cuisines, areaName, avgRating, deliveryTime, img,
             <h3>{name}</h3>
             <h4>{avgRating}Stars</h4>
             <h4>{deliveryTime}</h4>
-            <p>{cuisines}</p>
+            <p>{cuisines.join(', ')}</p>
             <p>{areaName}</p>
         </div>
     )

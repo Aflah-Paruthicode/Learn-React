@@ -1,3 +1,5 @@
+import UserClass from "./userClass"
+import User from "./user"
 const AboutUs = () => {
     return (
         <div className="about">
@@ -7,6 +9,8 @@ const AboutUs = () => {
             Do uam, sit nam doloribus aperiam. Perspiciatis eaque aperiam corporis accusantium laboriosam hic incidunt, dolores, pariatur molestiae tempora fugiat repudiandae necessitatibus, ut molestias? Magni doloribus eaque dolor.
             E0c.pturi quod amet provident dolores quo ipsa omnis, officia fuga, reiciendis, voluptate odio nemo magnam? Ad placeat quibusdam, ex accusantium cupiditate, suscipit explicabo temporibus magni aperiam odio voluptates sed laborum?
             Sint repellat corrupti facere aspernatur sunt vel rerum blanditiis, voluptate dolor officiis consectetur ipsam modi porro, autem ipsum maiores voluptatem quisquam hic. Ex tempore placeat blanditiis molestias eligendi, minus dolor.</p>
+            <UserClass name={'sdduh'} />
+            <User name={'dikfjidfjdifdjifdj'} age={'34'} />
         </div>
     )
 }

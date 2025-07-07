@@ -1,7 +1,9 @@
-import { data } from "../utils/data"
-import RestuarentCard from "./RestuarentCard"
-import { useEffect, useState } from "react"
-import Shimmer from "./Shimmer"
+import { data } from "../utils/data";
+import RestuarentCard from "./RestuarentCard";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
+import { RESTUARENT_MOB_API,RESTUARENT_WEB_API } from "../utils/constants";
 
 const Body = () => {
     let [datas,setDatas] = useState([])
@@ -12,8 +14,8 @@ const Body = () => {
 
         const mobile = isMobile();
         const url = mobile
-      ? 'https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=11.2488425&lng=75.78392099999999&carousel=true&third_party_vendor=1'
-      : 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.2488425&lng=75.78392099999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING';
+      ? RESTUARENT_MOB_API
+      : RESTUARENT_WEB_API ;
 
      let fetchData = async () => {
         try {
@@ -64,8 +66,8 @@ const Body = () => {
                   let resto = restuarent.info
                 if(resto.aggregatedDiscountInfoV3?.header) {
 
-                  return ( <RestuarentCard 
-                   key={resto.id}
+                  return ( <Link key={resto.id} to={'/restuarent/'+resto.id}><RestuarentCard 
+                   
                    name={resto.name}
                    cuisines={resto.cuisines}
                    areaName={resto.areaName}
@@ -73,9 +75,9 @@ const Body = () => {
                    deliveryTime={resto.sla.slaString}
                    img={resto.cloudinaryImageId}
                    price={resto.aggregatedDiscountInfoV3.header+" "+resto.aggregatedDiscountInfoV3.subHeader}
-                    />)
+                    /></Link>)
                 } else {
-                  return ( <RestuarentCard 
+                  return ( <Link key={resto.id} to={'/restuarent/'+resto.id}> <RestuarentCard 
                    key={resto.id}
                    name={resto.name}
                    cuisines={resto.cuisines}
@@ -83,7 +85,7 @@ const Body = () => {
                    avgRating={resto.avgRating}
                    deliveryTime={resto.sla.slaString}
                    img={resto.cloudinaryImageId}
-                    />)
+                    /></Link>)
                 }
                     
                     })

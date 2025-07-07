@@ -5,13 +5,14 @@ import Body from "./src/components/Body";
 import AboutUs from "./src/components/AboutUs";
 import ContactUs from "./src/components/ContactUs";
 import Error from "./src/components/Error";
-import { createBrowserRouter,RouterProvider } from "react-router-dom";
+import RestuarentMenu from "./src/components/RestuarentMenu";
+import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom";
 
 const AppLayout = () => {
     return (
         <div>
             <Header />
-            <Body />
+            <Outlet />
         </div>
     )
 }
@@ -19,16 +20,26 @@ const AppLayout = () => {
 const appRouter = createBrowserRouter([
     {
         path:'/',
-        element:<AppLayout />,
-        errorElement: <Error />
-    },
-    {
-        path:'/about',
-        element:<AboutUs />
-    },
-    {
-        path:'/contact',
-        element:<ContactUs />
+        element :<AppLayout />,
+        errorElement : <Error />,
+        children : [
+            {
+                path : '/',
+                element : <Body />
+            },
+            {
+                path : '/about',
+                element : <AboutUs />
+            },
+            {
+                path : '/contact',
+                element : <ContactUs />
+            },
+            {
+                path : '/restuarent/:resId',
+                element : <RestuarentMenu />
+            }
+        ]
     }
 ])
 

@@ -1,6 +1,6 @@
 const ContactUs = () => {
     return (
-        <div>
+        <div className="contactUs">
             <input type="text" placeholder="Enter your name" />
             <input type="email" placeholder="Enter your email" />
             <input type="tel" placeholder="Enter your phone" />
