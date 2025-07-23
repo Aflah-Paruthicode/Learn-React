@@ -11,16 +11,16 @@ import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom";
 const AppLayout = () => {
     return (
         <div>
-            <Header />
+            <Header /> 
             <Outlet />
         </div>
     )
-}
+} 
 
 const appRouter = createBrowserRouter([
     {
         path:'/',
-        element :<AppLayout />,
+        element :<AppLayout />, 
         errorElement : <Error />,
         children : [
             {

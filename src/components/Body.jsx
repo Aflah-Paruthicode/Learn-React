@@ -1,44 +1,15 @@
-import { data } from "../utils/data";
-import RestuarentCard from "./RestuarentCard";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Shimmer from "./Shimmer";
-import { RESTUARENT_MOB_API,RESTUARENT_WEB_API } from "../utils/constants";
+import { data } from "../utils/data"
+import RestuarentCard from "./RestuarentCard"
+import { Link } from "react-router-dom"
+import Shimmer from "./Shimmer"
+import useRestuarents from "../utils/useRestuarents"
 
 const Body = () => {
-    let [datas,setDatas] = useState([])
-
-    const isMobile = () => {
-        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    };
-
-        const mobile = isMobile();
-        const url = mobile
-      ? RESTUARENT_MOB_API
-      : RESTUARENT_WEB_API ;
-
-     let fetchData = async () => {
-        try {
-            let data = await fetch(url)
-            let json = await data.json()
-    
-            setDatas(json?.data?.cards?.find(
-            (c) => c.card?.card?.gridElements?.infoWithStyle?.restaurants
-            )?.card?.card?.gridElements?.infoWithStyle?.restaurants || [])
-            console.log('data : ',datas)
-        } catch (err) {
-            console.log('error : ',err)
-        }
-    } 
-    
-    useEffect(()=>{
-        
-        fetchData()
-    }, [])
+    let datas = useRestuarents()
 
     return datas.length === 0 ? (
-            <div className="body">
-            <div className="res-container">
+            <div className="body mt-32">
+            <div className="res-container flex flex-wrap justify-center font-sans">
                 <Shimmer /> <Shimmer />
                 <Shimmer /> <Shimmer />
                 <Shimmer /> <Shimmer />
@@ -46,28 +17,21 @@ const Body = () => {
             </div>
             </div>
         ) : (
-        <div className="body">
-            <div className="Search">
+        <div className="body mt-32 font-[poppins]">
+            <div className="Search m-12">
                 <input type="search" placeholder="Search..." onChange={((e) => {
-                    let result = data.filter((elem) => {
-                        let name = elem.info.name.toUpperCase()
-                        if(name.includes(e.target.value.toUpperCase())) {
-                            return elem
-                        }
-                    })
-                    setDatas(result)
                 })} />
                 
             </div>
-            <div className="res-container">
+            <div className="res-container flex flex-wrap justify-center font-sans">
 
               {
                datas.map((restuarent) => {
                   let resto = restuarent.info
                 if(resto.aggregatedDiscountInfoV3?.header) {
 
-                  return ( <Link key={resto.id} to={'/restuarent/'+resto.id}><RestuarentCard 
-                   
+                  return ( <Link className="decoration-[none] text-black" key={resto.id} to={'/restuarent/'+resto.id}><RestuarentCard 
+                   key={resto.id}
                    name={resto.name}
                    cuisines={resto.cuisines}
                    areaName={resto.areaName}
@@ -77,7 +41,7 @@ const Body = () => {
                    price={resto.aggregatedDiscountInfoV3.header+" "+resto.aggregatedDiscountInfoV3.subHeader}
                     /></Link>)
                 } else {
-                  return ( <Link key={resto.id} to={'/restuarent/'+resto.id}> <RestuarentCard 
+                  return ( <Link className="decoration-[none] text-black" key={resto.id} to={'/restuarent/'+resto.id}><RestuarentCard 
                    key={resto.id}
                    name={resto.name}
                    cuisines={resto.cuisines}

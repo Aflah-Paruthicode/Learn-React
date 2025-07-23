@@ -11,11 +11,11 @@ const ReadMore = ({text,maxLength = 100}) => {
     const isReadmoreNeeded  = text.length > maxLength
     return (
         <div className="menuDescription">
-            <p>
+            <p className="text-gray-600 max-w-[538px]">
                 {isExpanded || !isReadmoreNeeded ? text : truncatedText+'...'}
                 {
                 isReadmoreNeeded && (
-                    <button onClick={changeExpantion}>{isExpanded ? 'less' : 'more'}</button>
+                    <button className="bg-none border-none mb-2.5 ml-1.5 font-extrabold [font-feature-settings: normal] text-gray-600" onClick={changeExpantion}>{isExpanded ? 'less' : 'more'}</button>
                 )
             }
             </p>
