@@ -17,11 +17,11 @@ const useRestuarents =  () => {
         try {
             let data = await fetch(url)
             let json = await data.json()
-    
+        
             setDatas(json?.data?.cards?.find(
             (c) => c.card?.card?.gridElements?.infoWithStyle?.restaurants
             )?.card?.card?.gridElements?.infoWithStyle?.restaurants || [])
-            console.log('data : ',datas)
+            console.log('data : ',json)
         } catch (err) {
             console.log('error : ',err)
         }

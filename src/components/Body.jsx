@@ -1,11 +1,11 @@
-import { data } from "../utils/data"
-import RestuarentCard from "./RestuarentCard"
+import RestuarentCard , {isOpened} from "./RestuarentCard"
 import { Link } from "react-router-dom"
 import Shimmer from "./Shimmer"
 import useRestuarents from "../utils/useRestuarents"
 
 const Body = () => {
     let datas = useRestuarents()
+    let OpenedRestuarents = isOpened(RestuarentCard)
 
     return datas.length === 0 ? (
             <div className="body mt-32">
@@ -28,30 +28,10 @@ const Body = () => {
               {
                datas.map((restuarent) => {
                   let resto = restuarent.info
-                if(resto.aggregatedDiscountInfoV3?.header) {
 
-                  return ( <Link className="decoration-[none] text-black" key={resto.id} to={'/restuarent/'+resto.id}><RestuarentCard 
-                   key={resto.id}
-                   name={resto.name}
-                   cuisines={resto.cuisines}
-                   areaName={resto.areaName}
-                   avgRating={resto.avgRating}
-                   deliveryTime={resto.sla.slaString}
-                   img={resto.cloudinaryImageId}
-                   price={resto.aggregatedDiscountInfoV3.header+" "+resto.aggregatedDiscountInfoV3.subHeader}
-                    /></Link>)
-                } else {
-                  return ( <Link className="decoration-[none] text-black" key={resto.id} to={'/restuarent/'+resto.id}><RestuarentCard 
-                   key={resto.id}
-                   name={resto.name}
-                   cuisines={resto.cuisines}
-                   areaName={resto.areaName}
-                   avgRating={resto.avgRating}
-                   deliveryTime={resto.sla.slaString}
-                   img={resto.cloudinaryImageId}
-                    /></Link>)
-                }
-                    
+                  return ( <Link className="decoration-[none] text-black" key={resto.id} to={'/restuarent/'+resto.id}>
+                    { resto.isOpen ? <OpenedRestuarents restuarent={resto} /> : <RestuarentCard restuarent={resto} /> }
+                    </Link>)
                     })
               }
             </div>

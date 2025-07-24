@@ -1,57 +1,51 @@
-import MenuCard from "./MenuCard"
 import {useParams} from "react-router-dom"
+import { useState } from "react"
 import MenuShimmer from "./MenuShimmer"
 import useRestuarentMenu from "../utils/useRestuarentMenu"
+import MenuAccordion from "./MenuAccordion"
 
 const RestuarentMenu = () => {
 
     const {resId} = useParams()
     const resInfo = useRestuarentMenu(resId)
+    const [showAccordionIndex, setShowAccordionIndex] = useState(0)
+    const restuarentInfo = resInfo?.cards[2]?.card?.card?.info
+
+    
+    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((cate) => {
+        return cate.card.card["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
+    })
+    
+    console.log(categories)
 
     if ( resInfo === null ) return <MenuShimmer />
     return (
         <div className="rootMenu w-full flex justify-center mt-32">
         <div className="Menu-body w-[840px] font-sans font-normal mb-36">
-            <h1 className="hotel-Name text-2xl font-bold">{resInfo?.cards[2]?.card?.card?.info?.name}</h1>
+            <h1 className="hotel-Name text-2xl font-bold">{restuarentInfo?.name}</h1>
             <div className="hotel-Details border border-[18px] w-full [border-image-source:linear-gradient(to_top,#ababab70,#ffffff)] [border-image-slice:1] [border-image-repeat:stretch] p-4 mb-10 font-bold">
-                <p>{`${resInfo?.cards[2]?.card?.card?.info?.avgRating}
-                    (${resInfo?.cards[2]?.card?.card?.info?.totalRatingsString}) •
-                    ${resInfo?.cards[2]?.card?.card?.info?.costForTwoMessage}`}</p>
-                <p>{resInfo?.cards[2]?.card?.card?.info?.cuisines?.join(', ')}</p>
-                <p>Outlet <span className="font-normal"> {resInfo?.cards[2]?.card?.card?.info?.areaName}</span></p> 
-                <p>{resInfo?.cards[2]?.card?.card?.info?.sla?.slaString}</p>
+                <p>{`${restuarentInfo?.avgRating}
+                    (${restuarentInfo?.totalRatingsString}) •
+                    ${restuarentInfo?.costForTwoMessage}`}</p>
+                <p>{restuarentInfo?.cuisines?.join(', ')}</p>
+                <p>Outlet <span className="font-normal"> {restuarentInfo?.areaName}</span></p> 
+                <p>{restuarentInfo?.sla?.slaString}</p>
                 </div>
             {
                 
-                resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((elem) => {
+                categories.map((elem, index) => {
                     return (
-                        <MenuCard
-                        key={elem?.card?.info?.id} 
-                        name={elem?.card?.info?.name}
-                        price={elem?.card?.info?.defaultPrice || elem?.card?.info?.price}
-                        rating={elem?.card?.info?.ratings?.aggregatedRating}
-                        description={elem?.card?.info?.description}
-                        image={elem?.card?.info?.imageId}
-                        isVeg={elem?.card?.info?.itemAttribute?.vegClassifier}
-                            />
+                        <MenuAccordion 
+                        key={elem?.card?.card?.title} 
+                        title={elem?.card?.card?.title} 
+                        items={elem?.card?.card?.itemCards}
+                        showAccordion={showAccordionIndex == index ? true : false}
+                        setShowAccordion={() => setShowAccordionIndex(index)}
+                         />
                     )
                 })
             }
-            {
-                resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card?.itemCards?.map((elem) => {
-                    return (
-                        <MenuCard 
-                        key={elem?.card?.info?.id}
-                        name={elem?.card?.info?.name}
-                        price={elem?.card?.info?.defaultPrice || elem?.card?.info?.price}
-                        rating={elem?.card?.info?.ratings?.aggregatedRating}
-                        description={elem?.card?.info?.description}
-                        image={elem?.card?.info?.imageId}
-                        isVeg={elem?.card?.info?.itemAttribute?.vegClassifier}
-                            />
-                    )
-                })
-            }
+             
             
         </div>
         </div>

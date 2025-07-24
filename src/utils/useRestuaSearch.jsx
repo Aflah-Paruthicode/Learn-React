@@ -10,7 +10,6 @@ console.log('hahahahhaha : ',wholeDatas,value)
             }
                     })
             setDatas(result)
-            console.log('hook',datas)
             return datas
 }
 
