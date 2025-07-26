@@ -24,9 +24,11 @@ const RestuarentMenu = () => {
         <div className="Menu-body w-[840px] font-sans font-normal mb-36">
             <h1 className="hotel-Name text-2xl font-bold">{restuarentInfo?.name}</h1>
             <div className="hotel-Details border border-[18px] w-full [border-image-source:linear-gradient(to_top,#ababab70,#ffffff)] [border-image-slice:1] [border-image-repeat:stretch] p-4 mb-10 font-bold">
-                <p>{`${restuarentInfo?.avgRating}
-                    (${restuarentInfo?.totalRatingsString}) •
-                    ${restuarentInfo?.costForTwoMessage}`}</p>
+                <p>
+                    <span className="text-green-600">{`★ ${restuarentInfo?.avgRating}
+                    (${restuarentInfo?.totalRatingsString})`}
+                    </span>
+                    {` • ${restuarentInfo?.costForTwoMessage}`}</p>
                 <p>{restuarentInfo?.cuisines?.join(', ')}</p>
                 <p>Outlet <span className="font-normal"> {restuarentInfo?.areaName}</span></p> 
                 <p>{restuarentInfo?.sla?.slaString}</p>
@@ -40,7 +42,9 @@ const RestuarentMenu = () => {
                         title={elem?.card?.card?.title} 
                         items={elem?.card?.card?.itemCards}
                         showAccordion={showAccordionIndex == index ? true : false}
-                        setShowAccordion={() => setShowAccordionIndex(index)}
+                        setShowAccordion={(num) => {
+                                setShowAccordionIndex(num ? num : index)
+                        }}
                          />
                     )
                 })

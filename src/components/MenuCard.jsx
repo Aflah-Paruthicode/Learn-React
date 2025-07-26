@@ -4,7 +4,7 @@ const MenuCard = (props) => {
     console.log('heh ethiii')
     let {name,price,defaultPrice,ratings,description,imageId,itemAttribute} = props.item
     return (
-        <div className="menuCard-root border-b border-[#cecccc] justify-between min-h-[226px] items-center my-4 px-3 py-3 rounded-lg w-full flex">
+        <div className="menuCard-root border-b border-[#cecccc] justify-between min-h-[226px] transition-all ease-in-out duration-[0.5s] items-center my-4 px-3 py-3 w-full flex">
             <div className="menuItem-info ">
             {itemAttribute?.vegClassifier == 'VEG' ? <h6 className="text-[#00a200]  rounded-md w-4 h-4 mb-4 text-4xl font-black flex justify-center items-center">•</h6> : <h6 className="text-red-700  rounded-md justify-center items-center w-4 h-4 mb-4 text-4xl font-black flex">•</h6> }
             <h3 className="mt-0">{name}</h3>

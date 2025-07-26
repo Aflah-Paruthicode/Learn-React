@@ -1,5 +1,6 @@
 import UserClass from "./userClass"
 import { Component } from "react"
+import userContext from "../utils/userContext"
 
  class AboutUs extends Component {
 
@@ -16,6 +17,11 @@ import { Component } from "react"
         console.log('Parent Render')
         return (
         <div className="about mt-32">
+            <userContext.Consumer >
+                {({user}) => (
+                    <h1 className="font-bold text-2xl" >hey this it {user}</h1>
+                )}
+            </userContext.Consumer>
             <h1>About Us</h1>
             <p>Lorem ipsum dolor sit amet consectetur aeniam, totam quae facilis maiores tempore animi. Nihil maxime eum provident quia, laudantium quas adipisci incidunt? Itaque.
             </p>
