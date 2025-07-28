@@ -3,11 +3,14 @@ import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import useIsOnline from "../utils/useIsOnline"
 import userContext from "../utils/userContext"
+import { useSelector } from "react-redux"
 
 const Header = () => {
     let [buttonName,setButtonName] = useState('Login')
     const {user} = useContext(userContext)
-    console.log('the user context name here : ',user)
+
+    const cartItems = useSelector((store) => store.cart.items);
+    console.log(cartItems)
     
     return (
         <div className="header font-[poppins] justify-between items-center w-full px-28 py-2 flex fixed top-0 bg-white z-[100] shadow-2xl shadow-[#8888881f]">
@@ -21,7 +24,7 @@ const Header = () => {
                     <li className="text-lg font-mono m-2.5 p-2.5 transition-all ease-in-out duration-[0.3s] hover:bg-black hover:text-white hover:mx-3.5 hover:px-4 hover:rounded-lg"><Link className="decoration-[none]" to={'/'}>Home</Link></li>
                     <li className="text-lg font-mono m-2.5 p-2.5 transition-all ease-in-out duration-[0.3s] hover:bg-black hover:text-white hover:mx-3.5 hover:px-4 hover:rounded-lg"><Link className="decoration-[none]" to={'/about'}>About Us</Link></li>
                     <li className="text-lg font-mono m-2.5 p-2.5 transition-all ease-in-out duration-[0.3s] hover:bg-black hover:text-white hover:mx-3.5 hover:px-4 hover:rounded-lg"><Link className="decoration-[none]" to={'/contact'}>Contact Us</Link></li>
-                    <li className="text-lg font-mono m-2.5 p-2.5 transition-all ease-in-out duration-[0.3s] hover:bg-black hover:text-white hover:mx-3.5 hover:px-4 hover:rounded-lg"><Link className="decoration-[none]" to={'/cart'}>Cart</Link></li>
+                    <li className="text-lg font-mono m-2.5 p-2.5 transition-all ease-in-out duration-[0.3s] hover:bg-black hover:text-white hover:mx-3.5 hover:px-4 hover:rounded-lg"><Link className="decoration-[none]" to={'/cart'}>Cart({cartItems.length})</Link></li>
                     <li className="text-lg font-mono m-2.5 p-2.5 transition-all ease-in-out duration-[0.3s] hover:bg-black hover:text-white hover:mx-3.5 hover:px-4 hover:rounded-lg"><Link className="decoration-[none]" to={'/cart'}>{user}</Link></li>
                 </ul>
                 <button className="bg-black border-none text-white py-2.5 px-5 rounded-lg font-[cursive]" onClick={() => {

@@ -16,8 +16,6 @@ const RestuarentMenu = () => {
         return cate.card.card["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
     })
     
-    console.log(categories)
-
     if ( resInfo === null ) return <MenuShimmer />
     return (
         <div className="rootMenu w-full flex justify-center mt-32">
@@ -34,7 +32,6 @@ const RestuarentMenu = () => {
                 <p>{restuarentInfo?.sla?.slaString}</p>
                 </div>
             {
-                
                 categories.map((elem, index) => {
                     return (
                         <MenuAccordion 
@@ -44,12 +41,10 @@ const RestuarentMenu = () => {
                         showAccordion={showAccordionIndex == index ? true : false}
                         setShowAccordion={(num) => {
                                 setShowAccordionIndex(num ? num : index)
-                        }}
-                         />
+                        }} />
                     )
                 })
             }
-             
             
         </div>
         </div>
