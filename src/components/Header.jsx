@@ -10,7 +10,6 @@ const Header = () => {
     const {user} = useContext(userContext)
 
     const cartItems = useSelector((store) => store.cart.items);
-    console.log(cartItems)
     
     return (
         <div className="header font-[poppins] justify-between items-center w-full px-28 py-2 flex fixed top-0 bg-white z-[100] shadow-2xl shadow-[#8888881f]">

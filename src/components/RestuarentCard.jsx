@@ -2,6 +2,7 @@ const RestuarentCard = (props) => {
 
     let {name, cuisines, areaName, avgRating, sla, cloudinaryImageId, aggregatedDiscountInfoV3} = props.restuarent
     let price = aggregatedDiscountInfoV3?.header+' '+aggregatedDiscountInfoV3?.subHeader
+    console.log(props)
     
     return (
         <div className="res-card p-1.5 w-[400px] font-[poppins] mx-2.5 hover:transform-[scale(0.95)] duration-[0.2s] mb-1 hover:cursor-pointer">

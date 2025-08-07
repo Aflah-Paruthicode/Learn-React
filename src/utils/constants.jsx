@@ -1,4 +1,4 @@
-export const foodLogo = new URL('../assets/foodLogo.jpg', import.meta.url).href;
+export const foodLogo = '../assets/foodLogo.jpg';
 
 export const MENU_API = 'https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.2488425&lng=75.78392099999999&restaurantId='
 
